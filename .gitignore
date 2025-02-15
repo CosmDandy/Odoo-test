@@ -1,0 +1,7 @@
+.DS_Store
+config/pass.conf
+odoo-web-data
+odoo-db-data
+logs
+__pycache__/
+*.log
