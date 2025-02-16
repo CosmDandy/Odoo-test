@@ -34,7 +34,37 @@ class TestModel(models.Model):
 
     clients = fields.One2many("test.model.line", "test_model_id", string="Клиенты")
 
+    option_one = fields.Boolean(string="Опция 1")
+    option_two = fields.Boolean(string="Опция 2")
+    select_all = fields.Boolean(string="Выбрать все")
+
     @api.depends("document_creator")
     def _compute_responsible_editable(self):
         for record in self:
             record.responsible_editable = bool(record.document_creator)
+
+    @api.onchange("option_one", "option_two")
+    def _onchange_option(self):
+        if self._context.get("from_onchange", False):
+            return
+
+        self = self.with_context(from_onchange=True)
+
+        if self.option_one and self.option_two:
+            self.select_all = True
+        else:
+            self.select_all = False
+
+    @api.onchange("select_all")
+    def _onchange_select_all(self):
+        if self._context.get("from_onchange", False):
+            return
+
+        self = self.with_context(from_onchange=True)
+
+        if self.select_all:
+            self.option_one = True
+            self.option_two = True
+        else:
+            self.option_one = False
+            self.option_two = False
