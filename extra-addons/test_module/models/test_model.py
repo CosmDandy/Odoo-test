@@ -32,6 +32,8 @@ class TestModel(models.Model):
         store=True,
     )
 
+    clients = fields.One2many("test.model.line", "test_model_id", string="Клиенты")
+
     @api.depends("document_creator")
     def _compute_responsible_editable(self):
         for record in self:
