@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class TestModel(models.Model):
@@ -17,3 +17,22 @@ class TestModel(models.Model):
         string="Select Field",
     )
     binary_field = fields.Binary(string="Binary Field")
+
+    document_creator = fields.Many2one(
+        "res.users",
+        string="Создатель документа",
+        required=True,
+        default=lambda self: self.env.user,
+    )
+
+    responsible_partner_id = fields.Many2one(
+        "res.partner",
+        string="Ответственный",
+        compute="_compute_responsible_editable",
+        store=True,
+    )
+
+    @api.depends("document_creator")
+    def _compute_responsible_editable(self):
+        for record in self:
+            record.responsible_editable = bool(record.document_creator)

@@ -15,6 +15,9 @@
                 <field name="datetime_field" />
                 <field name="select_field" />
                 <field name="binary_field" />
+                <field name="document_creator" />
+                <field name="responsible_partner_id"
+                    attrs="{'readonly': [('document_creator', '=', False)]}" />
             </tree>
         </field>
     </record>
@@ -36,6 +39,9 @@
                         <field name="datetime_field" />
                         <field name="select_field" />
                         <field name="binary_field" />
+                        <field name="document_creator" />
+                        <field name="responsible_partner_id"
+                            attrs="{'readonly': [('document_creator', '=', False)]}" />
                     </group>
                 </sheet>
             </form>
