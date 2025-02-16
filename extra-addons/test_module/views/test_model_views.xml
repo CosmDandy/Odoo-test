@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Определение списка (Tree View) -->
+    <record id="view_test_model_tree" model="ir.ui.view">
+        <field name="name">test.model.tree</field>
+        <field name="model">test.model</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="char_field" />
+                <field name="text_field" />
+                <field name="int_field" />
+                <field name="float_field" />
+                <field name="bool_field" />
+                <field name="date_field" />
+                <field name="datetime_field" />
+                <field name="select_field" />
+                <field name="binary_field" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Определение формы (Form View) -->
+    <record id="view_test_model_form" model="ir.ui.view">
+        <field name="name">test.model.form</field>
+        <field name="model">test.model</field>
+        <field name="arch" type="xml">
+            <form string="Test Model">
+                <sheet>
+                    <group>
+                        <field name="char_field" />
+                        <field name="text_field" />
+                        <field name="int_field" />
+                        <field name="float_field" />
+                        <field name="bool_field" />
+                        <field name="date_field" />
+                        <field name="datetime_field" />
+                        <field name="select_field" />
+                        <field name="binary_field" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
