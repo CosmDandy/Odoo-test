@@ -11,11 +11,12 @@ services:
       - USER=odoo
       - PASSWORD=odoo
     volumes:
-      - ./odoo-web-data:/var/lib/odoo
+      # - ./odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./extra-addons:/mnt/extra-addons
       # - ./logs:/var/log/odoo
-    command: --config=/etc/odoo/odoo.conf -u all
+    # command: --config=/etc/odoo/odoo.conf -u test_module -d odoo-test
+    command: --config=/etc/odoo/odoo.conf
   postgres:
     image: postgres:15
     ports:
@@ -24,9 +25,9 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
-      - PGDATA=/var/lib/postgresql/data/pgdata
-    volumes:
-      - ./odoo-db-data:/var/lib/postgresql/data/pgdata
-volumes:
-  odoo-web-data:
-  odoo-db-data:
+      # - PGDATA=/var/lib/postgresql/data/pgdata
+    # volumes:
+      # - ./odoo-db-data:/var/lib/postgresql/data/pgdata
+# volumes:
+  # odoo-web-data:
+  # odoo-db-data:

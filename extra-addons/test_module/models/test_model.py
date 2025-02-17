@@ -41,7 +41,7 @@ class TestModel(models.Model):
     @api.depends("document_creator")
     def _compute_responsible_editable(self):
         for record in self:
-            record.responsible_editable = bool(record.document_creator)
+            record.responsible_partner_id = bool(record.document_creator)
 
     @api.onchange("option_one", "option_two")
     def _onchange_option(self):

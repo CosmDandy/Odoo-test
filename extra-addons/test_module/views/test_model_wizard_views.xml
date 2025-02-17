@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="test_model_wizard_form" model="ir.ui.view">
+        <field name="name">test.model.wizard.form</field>
+        <field name="model">test.model.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Добавить клиента">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <footer>
+                        <button name="action_create_and_add" string="Создать и добавить"
+                            type="object" class="btn-primary" />
+                        <button name="action_create_and_edit" string="Создать и изменить"
+                            type="object" class="btn-success" />
+                        <button name="action_cancel" string="Отменить" special="cancel"
+                            class="btn-secondary" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Действие для открытия визарда -->
+    <record id="action_test_model_wizard" model="ir.actions.act_window">
+        <field name="name">Добавить клиента</field>
+        <field name="res_model">test.model.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
