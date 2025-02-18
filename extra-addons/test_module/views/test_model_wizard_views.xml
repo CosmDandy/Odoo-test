@@ -14,8 +14,7 @@
                             type="object" class="btn-primary" />
                         <button name="action_create_and_edit" string="Создать и изменить"
                             type="object" class="btn-success" />
-                        <button name="action_cancel" string="Отменить" special="cancel"
-                            class="btn-secondary" />
+                        <button string="Отменить" special="cancel" class="btn-secondary" />
                     </footer>
                 </sheet>
             </form>

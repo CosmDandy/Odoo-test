@@ -49,7 +49,3 @@ class TestModelWizard(models.TransientModel):
             "res_id": partner.id,
             "target": "current",
         }
-
-    def action_cancel(self):
-        """Закрывает визард без сохранения"""
-        return {"type": "ir.actions.act_window_close"}

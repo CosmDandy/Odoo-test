@@ -37,8 +37,8 @@ class TestModel(models.Model):
 
     clients = fields.One2many("test.model.line", "test_model_id", string="Клиенты")
 
-    option_one = fields.Boolean(string="Опция 1", store=False)
-    option_two = fields.Boolean(string="Опция 2", store=False)
+    option_one = fields.Boolean(string="Опция 1")
+    option_two = fields.Boolean(string="Опция 2")
     select_all = fields.Boolean(string="Выбрать все", store=False)
 
     @api.depends("document_creator")
@@ -46,28 +46,19 @@ class TestModel(models.Model):
         for record in self:
             record.responsible_editable = bool(record.document_creator)
 
+    # TODO: подумать как это реализовать получше
     @api.onchange("option_one", "option_two")
     def _onchange_option(self):
         if self._context.get("from_onchange", False):
             return
-
-        # self = self.with_context(from_onchange=True)
-
-        if self.option_one and self.option_two:
-            self.select_all = True
-        else:
-            self.select_all = False
+        self.select_all = self.option_one and self.option_two
 
     @api.onchange("select_all")
     def _onchange_select_all(self):
-        if self._context.get("from_onchange", False):
-            return
-
-        # self = self.with_context(from_onchange=True)
-
+        self = self.with_context(from_onchange=True)
         if self.select_all:
             self.option_one = True
             self.option_two = True
-        else:
+        elif not self.select_all and self.option_one and self.option_two:
             self.option_one = False
             self.option_two = False

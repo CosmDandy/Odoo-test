@@ -17,7 +17,9 @@
                 <field name="binary_field" />
                 <field name="clients" />
                 <field name="document_creator" />
+                <field name="option_one" />
                 <field name="responsible_partner_id" />
+                <field name="option_two" />
             </tree>
         </field>
     </record>
@@ -30,31 +32,33 @@
             <form string="Test Model">
                 <sheet>
                     <group>
-                        <field name="select_all" />
-                        <field name="document_creator" />
-                        <field name="option_one" />
-                        <field name="responsible_partner_id"
-                            attrs="{'readonly': [('responsible_editable', '=', False)]}" />
-                        <field name="responsible_editable" invisible="1" />
-                        <field name="option_two" />
-
-                    </group>
-                    <group
-                        attrs="{'invisible': ['!', '|', '&amp;', ('option_one', '=', True), ('document_creator', '!=', False), '&amp;', ('option_two', '=', True), ('responsible_partner_id', '!=', False)]}">
-                        <field name="char_field" />
-                        <field name="text_field" />
-                        <field name="int_field" />
-                        <field name="float_field" />
-                        <field name="bool_field" />
-                        <field name="date_field" />
-                        <field name="datetime_field" />
-                        <field name="select_field" />
-                        <field name="binary_field" />
-                        <field name="clients" />
-                        <button name="%(action_test_model_wizard)d"
-                            string="Создать и добавить клиента"
-                            type="action"
-                            class="oe_highlight" />
+                        <group>
+                            <field name="select_all" />
+                            <field name="document_creator" />
+                            <field name="option_one" />
+                            <field name="responsible_partner_id"
+                                attrs="{'readonly': [('responsible_editable', '=', False)]}" />
+                            <field name="responsible_editable" invisible="1" />
+                            <field name="option_two" />
+                        </group>
+                        <group
+                            attrs="{'invisible': ['!', '|', '&amp;', ('option_one', '=', True), ('document_creator', '!=', False), '&amp;', ('option_two', '=', True), ('responsible_partner_id', '!=', False)]}">
+                            <field name="char_field" />
+                            <field name="text_field" />
+                            <field name="int_field" />
+                            <field name="float_field" />
+                            <field name="bool_field" />
+                            <field name="date_field" />
+                            <field name="datetime_field" />
+                            <field name="select_field" />
+                            <field name="binary_field" />
+                            <field name="clients" />
+                            <button name="%(action_test_model_wizard)d"
+                                string="Создать и добавить клиента"
+                                type="action"
+                                class="oe_highlight"
+                                style="width: 100%;" />
+                        </group>
                     </group>
                 </sheet>
             </form>
