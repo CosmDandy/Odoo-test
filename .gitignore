@@ -5,4 +5,3 @@ odoo-db-data
 logs
 __pycache__/
 *.log
-secrets
