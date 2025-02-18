@@ -28,27 +28,30 @@ class TestModel(models.Model):
     responsible_partner_id = fields.Many2one(
         "res.partner",
         string="Ответственный",
-        compute="_compute_responsible_editable",
         store=True,
+    )
+
+    responsible_editable = fields.Boolean(
+        compute="_compute_responsible_editable", store=False
     )
 
     clients = fields.One2many("test.model.line", "test_model_id", string="Клиенты")
 
-    option_one = fields.Boolean(string="Опция 1")
-    option_two = fields.Boolean(string="Опция 2")
-    select_all = fields.Boolean(string="Выбрать все")
+    option_one = fields.Boolean(string="Опция 1", store=False)
+    option_two = fields.Boolean(string="Опция 2", store=False)
+    select_all = fields.Boolean(string="Выбрать все", store=False)
 
     @api.depends("document_creator")
     def _compute_responsible_editable(self):
         for record in self:
-            record.responsible_partner_id = bool(record.document_creator)
+            record.responsible_editable = bool(record.document_creator)
 
     @api.onchange("option_one", "option_two")
     def _onchange_option(self):
         if self._context.get("from_onchange", False):
             return
 
-        self = self.with_context(from_onchange=True)
+        # self = self.with_context(from_onchange=True)
 
         if self.option_one and self.option_two:
             self.select_all = True
@@ -60,7 +63,7 @@ class TestModel(models.Model):
         if self._context.get("from_onchange", False):
             return
 
-        self = self.with_context(from_onchange=True)
+        # self = self.with_context(from_onchange=True)
 
         if self.select_all:
             self.option_one = True
