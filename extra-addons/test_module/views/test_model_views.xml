@@ -16,12 +16,8 @@
                 <field name="select_field" />
                 <field name="binary_field" />
                 <field name="clients" />
-                <field name="select_all" />
                 <field name="document_creator" />
-                <field name="option_one" />
-                <field name="responsible_partner_id"
-                    attrs="{'readonly': [('document_creator', '=', False)]}" />
-                <field name="option_two" />
+                <field name="responsible_partner_id" />
             </tree>
         </field>
     </record>
@@ -38,8 +34,10 @@
                         <field name="document_creator" />
                         <field name="option_one" />
                         <field name="responsible_partner_id"
-                            attrs="{'readonly': [('document_creator', '=', False)]}" />
+                            attrs="{'readonly': [('responsible_editable', '=', False)]}" />
+                        <field name="responsible_editable" invisible="1" />
                         <field name="option_two" />
+
                     </group>
                     <group
                         attrs="{'invisible': ['!', '|', '&amp;', ('option_one', '=', True), ('document_creator', '!=', False), '&amp;', ('option_two', '=', True), ('responsible_partner_id', '!=', False)]}">
