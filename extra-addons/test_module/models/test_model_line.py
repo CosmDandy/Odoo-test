@@ -9,6 +9,4 @@ class TestModelLine(models.Model):
         "test.model", string="Связанный документ", required=True, ondelete="cascade"
     )
     partner_id = fields.Many2one("res.partner", string="Клиент", required=True)
-    email = fields.Char(
-        string="Email", related="partner_id.email", store=True, readonly=True
-    )
+    email = fields.Char(string="Email", related="partner_id.email", readonly=True)
